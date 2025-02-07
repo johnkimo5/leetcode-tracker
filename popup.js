@@ -58,73 +58,75 @@ async function fetchLeetCodeStats(username) {
   const endpoint = 'https://leetcode.com/graphql';
   
   const query = `
-    query userProfile($username: String!) {
+    query userSessionProgress($username: String!) {
       matchedUser(username: $username) {
-        submitStats: submitStatsGlobal {
+        submitStats {
           acSubmissionNum {
-            difficulty
             count
-          }
-          totalSubmissionNum {
-            difficulty
-            count
+            submissions
           }
         }
       }
     }
   `;
 
+  const variables = { username };
+
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        query,
-        variables: { username }
-      })
+      body: JSON.stringify({ query, variables })
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
     const data = await response.json();
     
-    if (!data.data?.matchedUser) {
-      throw new Error('User not found');
+    console.log('LeetCode API response:', data);
+    
+    if (data.errors) {
+      throw new Error(`API Error: ${data.errors[0].message}`);
+    }
+    
+    const userStats = data?.data?.matchedUser?.submitStats;
+    if (!userStats) {
+      throw new Error('User not found or data not available.');
     }
 
-    const stats = data.data.matchedUser.submitStats;
     return {
-      submitStatsGlobal: {
-        count: stats.acSubmissionNum.reduce((total, item) => total + item.count, 0),
-        submissions: stats.totalSubmissionNum.reduce((total, item) => total + item.count, 0)
-      }
+      acceptedSubmissions: userStats.acSubmissionNum[0]
     };
+
   } catch (error) {
     console.error('Error fetching LeetCode stats:', error);
-    throw new Error(`Failed to fetch stats for ${username}: ${error.message}`);
+    throw error;
   }
 }
 
 function displayUserStats(stats) {
+  if (!stats) return;
+  
   const userStatsDiv = document.getElementById('userStats');
+  const totalSolved = stats.acceptedSubmissions.count;
+  
   userStatsDiv.innerHTML = `
-    <p>Total Solved: ${stats.submitStatsGlobal.count}</p>
-    <p>Total Submissions: ${stats.submitStatsGlobal.submissions}</p>
+    <p>Total Problems Solved: ${totalSolved}</p>
   `;
 }
 
 function displayFriendStats(username, stats) {
+  if (!stats) return;
+
   const friendStatsDiv = document.getElementById('friendStats');
   const friendStatElement = document.createElement('div');
   friendStatElement.className = 'friend-stats';
+  
+  const totalSolved = stats.acceptedSubmissions.count;
+  
   friendStatElement.innerHTML = `
     <h4>${username}</h4>
-    <p>Total Solved: ${stats.submitStatsGlobal.count}</p>
-    <p>Total Submissions: ${stats.submitStatsGlobal.submissions}</p>
+    <p>Total Problems Solved: ${totalSolved}</p>
   `;
   friendStatsDiv.appendChild(friendStatElement);
 }
