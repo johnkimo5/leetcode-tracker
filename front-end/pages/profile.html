@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | LeetCode Progress Tracker</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Add potential CDN links for chart libraries if needed -->
+</head>
+<body>
+  <div class="profile-container">
+    
+    <div class="profile-header">
+      <div class="user-info">
+        <img id="profilePic" src="../assets/default-avatar.png" alt="User Avatar" class="profile-avatar"> <!-- Placeholder image -->
+        <h1 id="usernameDisplay">Username</h1>
+      </div>
+      <div id="weeklyProgress" class="weekly-summary">
+        Solved this week: <span id="weeklySolvedCount">0</span>
+      </div>
+    </div>
+
+    <div class="profile-main">
+      <div class="profile-left-column">
+        
+        <div class="stats-overview section-card">
+            <!-- Section for the circular progress chart and total solved -->
+            <div id="progressChartArea">
+                <!-- Placeholder - Will be populated by JS -->
+            </div>
+            <!-- Section for Easy/Medium/Hard breakdown -->
+            <div id="difficultyStatsArea">
+                <!-- Placeholder - Will be populated by JS -->
+            </div>
+        </div>
+        
+      </div>
+
+      <div class="profile-right-column">
+        
+        <div id="trackedLists" class="section-card">
+          <h3>Tracked Lists</h3>
+          <div class="list-progress">
+            Blind 75: <span id="blind75Progress">0/75</span>
+            <!-- Optional: <progress id="blind75ProgressBar" value="0" max="75"></progress> -->
+          </div>
+          <div class="list-progress">
+            Neetcode 150: <span id="neetcode150Progress">0/150</span>
+            <!-- Optional: <progress id="neetcode150ProgressBar" value="0" max="150"></progress> -->
+          </div>
+        </div>
+
+        <div id="addFriendSection" class="section-card">
+            <h3>Add Friend</h3>
+            <div class="add-friend-input-group">
+                <input type="text" id="friendUsernameInput" placeholder="Enter LeetCode username">
+                <button id="addFriendBtn">Add</button>
+            </div>
+             <p id="addFriendStatus" class="add-friend-status"></p> <!-- For success/error messages -->
+        </div>
+
+        <div id="friendsListSection" class="section-card">
+          <h3>Friends</h3>
+          <ul id="friendsList">
+            <!-- Placeholder - Populated by JS -->
+            <li>Loading friends...</li>
+          </ul>
+        </div>
+
+        <div id="leaderboardSection" class="section-card">
+          <h3>Leaderboard</h3>
+          <table id="leaderboardTable">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>User</th>
+                <th>Solved</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody">
+              <!-- Placeholder - Populated by JS -->
+              <tr><td colspan="3">Loading leaderboard...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div> 
+
+  <script src="../js/api.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-browser extension for leetcode - WIP
+pivoted to making this a website

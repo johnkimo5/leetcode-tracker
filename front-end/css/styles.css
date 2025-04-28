@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f9fafb; /* Light gray background */
+  color: #374151; /* Default text color */
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Profile Page Specific Styles --- */
+
+.profile-container {
+  max-width: 1100px;
+  margin: 40px auto; /* Add top/bottom margin */
+  padding: 0 20px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#profilePic, .profile-avatar { /* Target both ID and class */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #e5e7eb;
+}
+
+#usernameDisplay {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827; /* Darker text for username */
+}
+
+.weekly-summary {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+#weeklySolvedCount {
+  font-weight: 700;
+  color: #10b981; /* Green for solved count */
+}
+
+.profile-main {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.profile-left-column, .profile-right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.section-card {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.section-card h2, .section-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Stats Overview Section */
+.stats-overview {
+  display: flex;
+  align-items: center; /* Align items vertically center */
+  gap: 40px; /* Space between chart and breakdown */
+}
+
+#progressChartArea {
+  position: relative;
+  display: flex; /* Use flex to center SVG */
+  justify-content: center;
+  align-items: center;
+  min-width: 180px; /* Ensure space for the chart */
+}
+
+.progress-svg {
+  width: 180px; 
+  height: 180px;
+  transform: rotate(-90deg); /* Start arcs from the top */
+}
+
+.progress-arc {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.easy-arc {
+  stroke: #10b981; /* Tailwind Green 500 */
+}
+
+.medium-arc {
+  stroke: #f59e0b; /* Tailwind Amber 500 */
+}
+
+.hard-arc {
+  stroke: #ef4444; /* Tailwind Red 500 */
+}
+
+.progress-center-text {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.progress-center-text .solved-count {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  display: block; /* Place total below */
+}
+
+.progress-center-text .total-count {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.progress-center-text .solved-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#difficultyStatsArea {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  gap: 15px;
+  flex-grow: 1; /* Allow this area to take remaining space */
+}
+
+.difficulty-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0; /* Add padding */
+  border-bottom: 1px dashed #e5e7eb;
+}
+.difficulty-box:last-child {
+  border-bottom: none;
+}
+
+.difficulty-label {
+  font-weight: 500;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Add colored dots */
+.difficulty-label::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.easy-box .difficulty-label::before {
+  background-color: #10b981;
+}
+.medium-box .difficulty-label::before {
+  background-color: #f59e0b;
+}
+.hard-box .difficulty-label::before {
+  background-color: #ef4444;
+}
+
+.difficulty-count {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Activity Section */
+#activityChart {
+  min-height: 180px; /* Adjust as needed */
+  /* Add specific styles for heatmap library here */
+}
+
+#activityChart p {
+  color: #9ca3af; /* Lighter placeholder text */
+  text-align: center;
+  padding-top: 50px;
+}
+
+/* Tracked Lists Section */
+.list-progress {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.list-progress span {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Optional progress bar styling */
+.list-progress progress {
+  display: block; /* Make it full width */
+  width: 100%;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.list-progress progress::-webkit-progress-bar {
+  background-color: #e5e7eb;
+}
+.list-progress progress::-webkit-progress-value {
+  background-color: #6366f1; /* Indigo */
+}
+.list-progress progress::-moz-progress-bar { 
+  background-color: #6366f1; /* Indigo */
+}
+
+/* Skill Stats Section */
+#skillList {
+  list-style: none; /* Remove default bullets if using ul */
+  padding: 0;
+}
+
+#skillList li, #skillList div { /* Style list items or divs */
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #4b5563;
+  border-bottom: 1px dashed #e5e7eb;
+}
+#skillList li:last-child, #skillList div:last-child {
+  border-bottom: none;
+}
+
+#skillList .skill-count {
+  font-weight: 600;
+  color: #111827;
+}
+
+#skillList p {
+  color: #9ca3af; /* Placeholder text */
+}
+
+/* Add Friend Section */
+.add-friend-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#friendUsernameInput {
+  flex-grow: 1;
+  /* Use existing input styles if available, or add basic ones */
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+#addFriendBtn {
+  /* Use existing button styles if available, or add basic ones */
+  padding: 8px 15px;
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.15s ease;
+}
+
+#addFriendBtn:hover {
+  background-color: #4338ca;
+}
+
+.add-friend-status {
+  font-size: 13px;
+  min-height: 1.2em; /* Prevent layout shift */
+  margin-top: 5px;
+}
+.add-friend-status.success {
+  color: #10b981;
+}
+.add-friend-status.error {
+  color: #ef4444;
+}
+
+/* Friends List Section */
+#friendsList {
+  list-style: none;
+  padding: 0;
+  max-height: 250px; /* Example height */
+  overflow-y: auto; /* Add scroll if list is long */
+}
+
+#friendsList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  font-size: 14px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+#friendsList li:last-child {
+  border-bottom: none;
+}
+
+/* Add styles for potential remove button */
+#friendsList button.remove-friend-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+#friendsList button.remove-friend-btn:hover {
+  text-decoration: underline;
+}
+
+/* Leaderboard Section */
+#leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+#leaderboardTable th,
+#leaderboardTable td {
+  padding: 10px 5px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#leaderboardTable th {
+  font-weight: 600;
+  color: #4b5563;
+  background-color: #f9fafb;
+}
+
+#leaderboardTable tbody tr:hover {
+  background-color: #f3f4f6;
+}
+
+/* Highlight current user in leaderboard */
+#leaderboardTable tbody tr.current-user td {
+  font-weight: 600;
+  color: #4f46e5; 
+}
+
+/* --- Clean Up Old/Unused Styles --- */
+/* Remove styles related to login page illustration, old header/nav, etc. */
+.login-page,
+.login-container,
+.login-box,
+.nav-bar,
+.nav-item,
+.page, 
+.stats,
+.friend-stats,
+.main-title,
+.subtitle,
+.company-logo,
+#userHeader, /* Replaced by .profile-header */
+.activity-chart, /* Class replaced by #activityChart styles */
+.leaderboard,
+.friends-list,
+.leaderboard-table,
+.illustration,
+.header, /* Replaced by profile-header structure */
+.header-content,
+.logo, /* Assuming logo context was old header */
+.nav, /* Assuming nav context was old header */
+.logo-circle,
+.logo-wrapper,
+body::before /* Remove top gradient bar */
+{ 
+  display: none !important; /* Hide them effectively */ 
+  /* Or simply delete these rules if preferred */
+}
+
+/* Keep input/button styles if needed elsewhere, otherwise remove */
+/* label, input, button { ... } */
+
+/* Keep error message style if used */
+.error-message {
+  color: #ef4444; /* Use red color consistent with hard */
+  margin-top: 10px;
+  font-size: 14px;
+  /* display: none; by default */
+}
+
+.error {
+  color: #ef4444; /* General error class */
+  font-weight: 500;
+}

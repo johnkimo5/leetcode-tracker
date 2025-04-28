@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends | LeetCode Progress Tracker</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <nav class="nav-bar">
+    <a href="profile.html" class="nav-item">Profile</a>
+    <a href="friends.html" class="nav-item active">Friends</a>
+    <a href="leaderboard.html" class="nav-item">Leaderboard</a>
+    <a href="#" id="logoutBtn" class="nav-item">Logout</a>
+  </nav>
+
+  <div class="page" id="friendsPage">
+    <h2 class="main-title">Friends List</h2>
+    
+    <div class="input-group">
+      <label for="friendUsername">Add Friend:</label>
+      <input type="text" id="friendUsername" />
+      <button id="addFriend">Add</button>
+    </div>
+
+    <div id="friendsList" class="friends-list">
+      <!-- Friends will be listed here -->
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/friends.js"></script>
+</body>
+</html>
